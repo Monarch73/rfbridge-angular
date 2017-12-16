@@ -1,0 +1,41 @@
+<form #switchForm="ngForm" (ngSubmit)="add()">
+  <div class="form-group">
+    <label for="name">Name</label>
+      <input class="form-control" name="name"
+             [(ngModel)]="switch.name"
+             required>
+  </div>
+  <div class="form-group">
+    <label for="houseCode">HouseCode</label>
+      <input class="form-control" name="houseCode"
+             [(ngModel)]="switch.houseCode">
+  </div>
+  <div class="form-group">
+    <label for="deviceCode">DeviceCode</label>
+      <input class="form-control" name="deviceCode"
+             [(ngModel)]="switch.deviceCode">
+  </div>
+  <div class="form-group">
+    <label for="triStateOn">TriState On</label>
+      <input class="form-control" name="triStateOn"
+             [(ngModel)]="switch.triStateOn">
+  </div>
+  <div class="form-group">
+    <label for="triStateOff">TriState Off</label>
+      <input class="form-control" name="triStateOff"
+             [(ngModel)]="switch.triStateOff">
+  </div>
+  <div class="form-group">
+    <label for="urlOn">URL On</label>
+      <input class="form-control" name="urlOn"
+             [(ngModel)]="switch.urlOn">
+  </div>
+  <div class="form-group">
+    <label for="urlOff">URL Off</label>
+      <input class="form-control" name="urlOff"
+             [(ngModel)]="switch.urlOff">
+  </div>
+  <div class="form-group">
+    <button class="btn" type="submit">Save</button>
+  </div>
+</form>

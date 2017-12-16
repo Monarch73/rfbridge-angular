@@ -1,6 +1,6 @@
 import { SwitchesService } from './../../shared/switches.service';
 import { EntitySwitch } from './../../shared/entity-switch';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'rf-switch',
@@ -9,8 +9,11 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SwitchComponent implements OnInit {
 
- @Input()
- switch: EntitySwitch;
+@Input()
+switch: EntitySwitch;
+
+@Output()
+switchDeleted = new EventEmitter<number>();
 
   constructor(public service: SwitchesService) { }
 
@@ -27,6 +30,8 @@ export class SwitchComponent implements OnInit {
     this.service.sendUrl(this.switch.urlOff);
   }
 
-  public switchDelete() { }
+  public switchDelete() {
+    this.switchDeleted.emit(this.switch.nummer);
+   }
 
 }

@@ -1,7 +1,7 @@
 import { EntityNewSwitch } from './entity-new-switch';
 import { EntitySwitch } from './entity-switch';
 import { EntityJsonSwitch } from './entity-json-switch';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map as rxMap, retry } from 'rxjs/operators';
 
@@ -27,6 +27,9 @@ export class SwitchesService {
   }
 
   public postNewSwitch(url: string, newSwitch: EntityNewSwitch) {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/form-data');
+//    return this.http.post(url, body, {headers: headers })
     this.http.post(
       this.espHost !== '' ? 'http://' + this.espHost + '/estore' : '/estore',
       {
@@ -37,7 +40,7 @@ export class SwitchesService {
         tri2: newSwitch.triStateOff,
         url1: newSwitch.urlOn,
         url2: newSwitch.urlOff
-      } )
+      } , {headers: headers })
       .subscribe(() => { console.log('switch saved'); } );
   }
 

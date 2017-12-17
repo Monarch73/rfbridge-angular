@@ -1,7 +1,7 @@
 import { EntityNewSwitch } from './entity-new-switch';
 import { EntitySwitch } from './entity-switch';
 import { EntityJsonSwitch } from './entity-json-switch';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map as rxMap, retry } from 'rxjs/operators';
 
@@ -10,7 +10,8 @@ export class SwitchesService {
 
   public espHost: string;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient) {
     this.espHost = '';
   }
 
@@ -27,20 +28,19 @@ export class SwitchesService {
   }
 
   public postNewSwitch(url: string, newSwitch: EntityNewSwitch) {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/form-data');
-//    return this.http.post(url, body, {headers: headers })
+    const myheaders = new HttpHeaders();
+    const mybody = new HttpParams().
+    append('name', newSwitch.name).
+    append('house', newSwitch.houseCode).
+    append('code', newSwitch.deviceCode).
+    append('tri1', newSwitch.triStateOn).
+    append('tri2', newSwitch.triStateOff).
+    append('url1', newSwitch.urlOn).
+    append('url2', newSwitch.urlOff);
+    myheaders.append('Content-Type', 'application/form-data');
     this.http.post(
       this.espHost !== '' ? 'http://' + this.espHost + '/estore' : '/estore',
-      {
-        name: newSwitch.name,
-        house: newSwitch.houseCode,
-        code: newSwitch.deviceCode,
-        tri1: newSwitch.triStateOn,
-        tri2: newSwitch.triStateOff,
-        url1: newSwitch.urlOn,
-        url2: newSwitch.urlOff
-      } , {headers: headers })
+      mybody, { headers: myheaders } )
       .subscribe(() => { console.log('switch saved'); } );
   }
 

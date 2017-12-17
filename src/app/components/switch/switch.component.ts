@@ -31,6 +31,7 @@ switchDeleted = new EventEmitter<number>();
   }
 
   public switchDelete() {
+    this.service.sendUrl(this.switch.urlDelete);
     this.switchDeleted.emit(this.switch.nummer);
    }
 

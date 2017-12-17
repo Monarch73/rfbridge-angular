@@ -8,7 +8,11 @@ import { map as rxMap, retry } from 'rxjs/operators';
 @Injectable()
 export class SwitchesService {
 
-  constructor(private http: HttpClient) { }
+  public espHost: string;
+
+  constructor(private http: HttpClient) {
+    this.espHost = '';
+  }
 
   public sendUrl(url: string): void {
     console.log('sending request');
@@ -16,13 +20,15 @@ export class SwitchesService {
   }
 
   public getSwitches(url: string) {
-    return this.http.get<EntityJsonSwitch[]>('http://192.168.1.86/jsonList').pipe(
-      retry(3));
+    console.log('Hole jsonList von: ', this.espHost !== '' ? this.espHost : 'localhost');
+    return this.http.get<EntityJsonSwitch[]>(
+      this.espHost !== '' ? 'http://' + this.espHost + '/jsonList' : '/jsonList')
+      .pipe(retry(3));
   }
 
   public postNewSwitch(url: string, newSwitch: EntityNewSwitch) {
     this.http.post(
-      'http://192.168.1.86/estore',
+      this.espHost !== '' ? 'http://' + this.espHost + '/estore' : '/estore',
       {
         name: newSwitch.name,
         house: newSwitch.houseCode,
@@ -35,4 +41,8 @@ export class SwitchesService {
       .subscribe(() => { console.log('switch saved'); } );
   }
 
+  public setEspHost(espHost: string): void {
+    this.espHost = espHost;
+    console.log('espHost ist jetzt ', this.espHost);
+  }
 }

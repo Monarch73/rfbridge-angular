@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { element } from 'protractor';
 import { SwitchesService } from './../../shared/switches.service';
 import { EntitySwitch } from './../../shared/entity-switch';
@@ -11,8 +12,11 @@ import { Component, OnInit } from '@angular/core';
 export class SwitchesComponent implements OnInit {
 
   public switches: EntitySwitch[];
+  public espHost: string;
 
-  constructor(private service: SwitchesService) {
+  constructor(
+    private service: SwitchesService,
+    public route: ActivatedRoute) {
 //    this.switches = [
 //      new EntitySwitch(
 //        0,
@@ -28,10 +32,21 @@ export class SwitchesComponent implements OnInit {
 //        'http://switch/edelete?no=1&sw=0')
 //    ];
 ////
-    this.reloadSwitches();
+    // need to delay
+    setTimeout(() => {
+      this.reloadSwitches();
+    }, 1000);
    }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.espHost = '';
+    console.log('fragment', this.route.snapshot.fragment);
+    if (this.route.snapshot.fragment !== '') {
+      this.espHost = this.route.snapshot.fragment;
+      this.service.setEspHost(this.espHost);
+      console.log('set host: ', this.espHost);
+    }
+   }
 
   reloadSwitches(): void {
     this.service.getSwitches('').
@@ -42,9 +57,9 @@ export class SwitchesComponent implements OnInit {
           new EntitySwitch(
             ele.i,
             ele.n,
-            'http://switch/esocket?no=' + ele.i + '&sw=1',
-            'http://switch/esocket?no=' + ele.i + '&sw=0',
-            'http://switch/edelete?no=' + ele.i + '&sw=0'
+            this.espHost !== '' ? 'http://' + this.espHost + '/esocket?no=' + ele.i + '&sw=1' : '/esocket?no=' + ele.i + '&sw=1',
+            this.espHost !== '' ? 'http://' + this.espHost + '/esocket?no=' + ele.i + '&sw=0' : '/esocket?no=' + ele.i + '&sw=0',
+            this.espHost !== '' ? 'http://' + this.espHost + '/edelete?no=' + ele.i + '&sw=0' : '/edelete?no=' + ele.i + '&sw=0'
           ));
       });
     } );

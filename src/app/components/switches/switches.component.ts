@@ -41,7 +41,7 @@ export class SwitchesComponent implements OnInit {
   ngOnInit() {
     this.espHost = '';
     console.log('fragment', this.route.snapshot.fragment);
-    if (this.route.snapshot.fragment !== '') {
+    if (this.route.snapshot.fragment != null && this.route.snapshot.fragment !== '') {
       this.espHost = this.route.snapshot.fragment;
       this.service.setEspHost(this.espHost);
       console.log('set host: ', this.espHost);

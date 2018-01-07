@@ -1,9 +1,8 @@
 <div class="container">
+    <div class="row">
 <rf-switch
   *ngFor="let switch of switches"
  [switch]="switch"
  (switchDeleted)="reloadSwitches()"></rf-switch>
 </div>
-<div class="container">
-  <rf-new-switch (switchCreated)="reloadSwitches()"></rf-new-switch>
-</div>
+<rf-new-switch (switchCreated)="reloadSwitches()"></rf-new-switch>

@@ -1,41 +1,55 @@
+<br/>
+  <br/>
+  <h4> 
+    <p class="text Stil2"><strong>Konfiguration</strong></p>
+  </h4>
 <form #switchForm="ngForm" (ngSubmit)="add()">
-  <div class="form-group">
-    <label for="name">Name</label>
+  <div class="row alert alert-dark" role="alert">
+    <label for="name"><strong>DeviceName</strong></label>
       <input class="form-control" name="name"
-             [(ngModel)]="switch.name"
-             required placeholder="ie. kitchenlamp">
+             [(ngModel)]="switch.name" required placeholder="ie. kitchenlamp">
   </div>
-  <div class="form-group bg-light">
-    <label for="houseCode">HouseCode</label>
-      <input class="form-control" name="houseCode"
+
+  <div class="row alert alert-dark">
+    <div class="col">
+      <label for="houseCode"><strong>HouseCode</strong></label>
+        <input class="form-control" name="houseCode"
              [(ngModel)]="switch.houseCode" placeholder="ie. 11001">
-  </div>
-  <div class="form-group bg-light">
-    <label for="deviceCode">DeviceCode</label>
+  </div>         
+  <div class="col">             
+    <label for="deviceCode"><strong>DeviceCode</strong></label>
       <input class="form-control" name="deviceCode"
              [(ngModel)]="switch.deviceCode" placeholder="ie. 10101">
+    </div>
   </div>
-  <div class="form-group bg-dark">
-    <label for="triStateOn">TriState On</label>
+
+  <div class="row alert alert-dark">
+      <div class="col">  
+    <label for="triStateOn"><strong>TriState on</strong></label>
       <input class="form-control" name="triStateOn"
              [(ngModel)]="switch.triStateOn" placeholder="ie. 00F0F0FF0F0F">
-  </div>
-  <div class="form-group bg-dark">
-    <label for="triStateOff">TriState Off</label>
+  </div>         
+  <div class="col">
+    <label for="triStateOff"><strong>TriState off</strong></label>
       <input class="form-control" name="triStateOff"
              [(ngModel)]="switch.triStateOff" placeholder="ie. 00F0F0FF0FF0">
+    </div>
   </div>
-  <div class="form-group bg-light">
-    <label for="urlOn">URL On</label>
-      <input class="form-control" name="urlOn"
-             [(ngModel)]="switch.urlOn" placeholder="ie. http://192.168.1.80/fhem/switchon.pl">
+  
+  <div class="row alert alert-dark">
+      <div class="col">
+      <label for="urlOn"><strong>URL on</strong></label>
+        <input class="form-control" name="urlOn"
+               [(ngModel)]="switch.urlOn" placeholder="ie. http://192.168.1.50/fhem/switchon.pl">
+      </div>         
+      <div class="col">         
+      <label for="urlOff"><strong>URL off</strong></label>
+        <input class="form-control" name="urlOff"
+               [(ngModel)]="switch.urlOff" placeholder="ie. http://192.168.1.50/fhem/switchoff.pl">
+    </div>
   </div>
-  <div class="form-group bg-light">
-    <label for="urlOff">URL Off</label>
-      <input class="form-control" name="urlOff"
-             [(ngModel)]="switch.urlOff" placeholder="ie. http://192.168.1.80/fhem/switchoff.pl">
-  </div>
+  
   <div class="form-group">
-    <button class="btn" type="submit">Save</button>
+    <button class="btn btn-success" type="submit">Save</button>
   </div>
 </form>

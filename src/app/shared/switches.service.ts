@@ -36,7 +36,10 @@ export class SwitchesService {
     append('tri1', newSwitch.triStateOn).
     append('tri2', newSwitch.triStateOff).
     append('url1', newSwitch.urlOn).
-    append('url2', newSwitch.urlOff);
+    append('url2', newSwitch.urlOff).
+    append('irhz', newSwitch.hz).
+    append('iroff', newSwitch.dataOff).
+    append('iron', newSwitch.dataOn);
     myheaders.append('Content-Type', 'application/form-data');
     this.http.post(
       this.espHost !== '' ? 'http://' + this.espHost + '/estore' : '/estore',

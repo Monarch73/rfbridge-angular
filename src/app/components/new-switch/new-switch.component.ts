@@ -16,7 +16,7 @@ export class NewSwitchComponent implements OnInit {
   switchCreated = new EventEmitter<EntityNewSwitch>();
 
   constructor(public service: SwitchesService) {
-    this.switch = new EntityNewSwitch('', '', '', '', '', '', '');
+    this.switch = new EntityNewSwitch('', '', '', '', '', '', '', '', '', '');
    }
 
    @ViewChild('switchForm')
@@ -28,7 +28,7 @@ export class NewSwitchComponent implements OnInit {
   public add(): void {
     this.service.postNewSwitch('', this.switch);
     this.switchCreated.emit(this.switch);
-    this.switch = new EntityNewSwitch('', '', '', '', '', '', '');
+    this.switch = new EntityNewSwitch('', '', '', '', '', '', '', '', '', '');
     this.switchForm.resetForm(this.switch);
   }
 

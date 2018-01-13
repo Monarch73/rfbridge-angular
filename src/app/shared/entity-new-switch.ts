@@ -6,6 +6,9 @@ export class EntityNewSwitch {
     public triStateOn: string,
     public triStateOff: string,
     public urlOn: string,
-    public urlOff: string
+    public urlOff: string,
+    public hz: string,
+    public dataOn: string,
+    public dataOff: string,
   ) { }
 }

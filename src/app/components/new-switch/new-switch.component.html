@@ -1,7 +1,7 @@
 <br/>
   <br/>
-  <h4> 
-    <p class="text Stil2"><strong>Konfiguration</strong></p>
+  <h4>
+    <p class="text Stil2"><strong>Configuration</strong></p>
   </h4>
 <form #switchForm="ngForm" (ngSubmit)="add()">
   <div class="row alert alert-dark" role="alert">
@@ -15,8 +15,8 @@
       <label for="houseCode"><strong>HouseCode</strong></label>
         <input class="form-control" name="houseCode"
              [(ngModel)]="switch.houseCode" placeholder="ie. 11001">
-  </div>         
-  <div class="col">             
+  </div>
+  <div class="col">
     <label for="deviceCode"><strong>DeviceCode</strong></label>
       <input class="form-control" name="deviceCode"
              [(ngModel)]="switch.deviceCode" placeholder="ie. 10101">
@@ -24,31 +24,48 @@
   </div>
 
   <div class="row alert alert-dark">
-      <div class="col">  
+      <div class="col">
     <label for="triStateOn"><strong>TriState on</strong></label>
       <input class="form-control" name="triStateOn"
              [(ngModel)]="switch.triStateOn" placeholder="ie. 00F0F0FF0F0F">
-  </div>         
+  </div>
   <div class="col">
     <label for="triStateOff"><strong>TriState off</strong></label>
       <input class="form-control" name="triStateOff"
              [(ngModel)]="switch.triStateOff" placeholder="ie. 00F0F0FF0FF0">
     </div>
   </div>
-  
+
   <div class="row alert alert-dark">
       <div class="col">
       <label for="urlOn"><strong>URL on</strong></label>
         <input class="form-control" name="urlOn"
                [(ngModel)]="switch.urlOn" placeholder="ie. http://192.168.1.50/fhem/switchon.pl">
-      </div>         
-      <div class="col">         
+      </div>
+      <div class="col">
       <label for="urlOff"><strong>URL off</strong></label>
         <input class="form-control" name="urlOff"
                [(ngModel)]="switch.urlOff" placeholder="ie. http://192.168.1.50/fhem/switchoff.pl">
     </div>
   </div>
-  
+  <div class="row alert alert-dark">
+    <div class="col">
+      <label for="hz"><strong>IR Herz</strong></label>
+      <input class="form-control" name="hz" [(ngModel)]="switch.hz" placeholder="ie. 26000">
+    </div>
+  </div>
+  <div class="row alert alert-dark">
+      <div class="col">
+        <label for="hz"><strong>IR Raw Data On</strong></label>
+        <input class="form-control" name="dataOn" [(ngModel)]="switch.dataOn" placeholder="ie. 444,123,678, 65535">
+      </div>
+  </div>
+  <div class="row alert alert-dark">
+      <div class="col">
+        <label for="hz"><strong>IR Raw Data Off</strong></label>
+        <input class="form-control" name="dataOff" [(ngModel)]="switch.dataOff" placeholder="ie. 26000">
+      </div>
+  </div>
   <div class="form-group">
     <button class="btn btn-success" type="submit">Save</button>
   </div>
